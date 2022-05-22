@@ -17,6 +17,8 @@ interface WeatherBindings {
 
 class WeatherFragment : Fragment(R.layout.main_fragment), DaggerComponentOwner {
     override val daggerComponent: WeatherComponent by fragmentComponent { _, app ->
+        // If you want a ViewModel scoped component, just instantiate this component inside of your ViewModel.
+        // You instantiate this component anywhere, really.
         app.bindings<WeatherComponent.ParentBindings>().weatherComponentBuilder().create()
     }
 

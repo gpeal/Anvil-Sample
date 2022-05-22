@@ -5,9 +5,6 @@ import com.gpeal.droidconanvilsample.lib.daggerscopes.WeatherScope
 import com.gpeal.droidconanvilsample.lib.daggerscopes.utils.SingleIn
 import com.squareup.anvil.annotations.ContributesSubcomponent
 import com.squareup.anvil.annotations.ContributesTo
-import com.squareup.anvil.annotations.MergeSubcomponent
-import dagger.Subcomponent
-import kotlinx.coroutines.CoroutineScope
 
 @SingleIn(WeatherScope::class)
 @ContributesSubcomponent(WeatherScope::class, AppScope::class)
