@@ -29,12 +29,8 @@ class ContributesApiCodeGenerator : CodeGenerator {
 
     override fun generateCode(codeGenDir: File, module: ModuleDescriptor, projectFiles: Collection<KtFile>): Collection<GeneratedFile> {
         return projectFiles.classAndInnerClassReferences(module)
-            .mapNotNull { clazz ->
-                when {
-                    clazz.isAnnotatedWith(ContributesApi::class.fqName) -> generateModule(clazz, codeGenDir)
-                    else -> null
-                }
-            }
+            .filter { it.isAnnotatedWith(ContributesApi::class.fqName) }
+            .map { generateModule(it, codeGenDir) }
             .toList()
     }
 
@@ -42,20 +38,22 @@ class ContributesApiCodeGenerator : CodeGenerator {
         val generatedPackage = apiClass.packageFqName.toString()
         val moduleClassName = "${apiClass.shortName}_Module"
         val component = AppScope::class.asClassName()
+        // Generate a Dagger module file called MyApi_Module.
         val content = FileSpec.buildFile(generatedPackage, moduleClassName) {
             addType(
                 TypeSpec.classBuilder(moduleClassName)
                     .addAnnotation(Module::class)
                     .addAnnotation(AnnotationSpec.builder(ContributesTo::class).addMember("%T::class", component).build())
                     .addFunction(
+                        // @Provides @Reusable provideMyApi(retrofit: Retrofit): MyApi
                         FunSpec.builder("provide${apiClass.shortName}")
                             .addParameter(
-                                ParameterSpec.builder("retrofit", ClassName("retrofit2", "Retrofit"))
-                                    .build(),
+                                ParameterSpec.builder("retrofit", ClassName("retrofit2", "Retrofit")).build(),
                             )
                             .returns(apiClass.asClassName())
                             .addAnnotation(Provides::class)
                             .addAnnotation(Reusable::class)
+                            // return retrofit.create(MyApi::class.java)
                             .addCode("return retrofit.create(%T::class.java)", apiClass.asClassName())
                             .build(),
                     )
