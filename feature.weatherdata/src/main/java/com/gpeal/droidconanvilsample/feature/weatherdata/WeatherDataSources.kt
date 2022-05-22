@@ -21,3 +21,12 @@ class WeatherUndergroundDataSource @Inject constructor(): WeatherDataSource {
         return listOf(73, 71, 76, 77, 75, 79, 89)
     }
 }
+
+@StringKey("WeatherDb")
+@ContributesMultibinding(WeatherScope::class)
+class WeatherDbDataSource @Inject constructor(private val weatherApi: WeatherApi): WeatherDataSource {
+    override suspend fun getForecast(): List<Int> {
+        return weatherApi.getWeather("San Francisco").nextDays.map { it.maxTemp.f }
+    }
+
+}

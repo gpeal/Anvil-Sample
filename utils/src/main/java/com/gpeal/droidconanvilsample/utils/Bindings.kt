@@ -1,4 +1,4 @@
-package com.gpeal.droidconanvilsample.lib.daggerscopes.utils
+package com.gpeal.droidconanvilsample.utils
 
 import android.app.Application
 import android.content.Context

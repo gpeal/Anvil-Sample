@@ -2,7 +2,7 @@ package com.gpeal.droidconanvilsample.feature.weatherui
 
 import com.gpeal.droidconanvilsample.lib.daggerscopes.AppScope
 import com.gpeal.droidconanvilsample.lib.daggerscopes.WeatherScope
-import com.gpeal.droidconanvilsample.lib.daggerscopes.utils.SingleIn
+import com.gpeal.droidconanvilsample.lib.daggerscopes.SingleIn
 import com.squareup.anvil.annotations.ContributesSubcomponent
 import com.squareup.anvil.annotations.ContributesTo
 

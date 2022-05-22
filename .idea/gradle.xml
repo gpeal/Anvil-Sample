@@ -9,12 +9,14 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/anvilcodegen" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/feature.weatherdata" />
             <option value="$PROJECT_DIR$/feature.weatherui" />
             <option value="$PROJECT_DIR$/lib.daggerscopes" />
             <option value="$PROJECT_DIR$/lib.userprefs" />
             <option value="$PROJECT_DIR$/lib.weatherdata" />
+            <option value="$PROJECT_DIR$/utils" />
           </set>
         </option>
       </GradleProjectSettings>

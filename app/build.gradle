@@ -37,6 +37,7 @@ dependencies {
     implementation project(':lib.userprefs')
     implementation project(':feature.weatherdata')
     implementation project(':feature.weatherui')
+    implementation project(':utils')
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     implementation 'com.google.dagger:dagger:2.42'

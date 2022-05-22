@@ -1,4 +1,4 @@
-package com.gpeal.droidconanvilsample.lib.daggerscopes.utils
+package com.gpeal.droidconanvilsample.lib.daggerscopes
 
 import javax.inject.Scope
 import kotlin.reflect.KClass

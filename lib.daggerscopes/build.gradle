@@ -1,34 +1,7 @@
-plugins {
-    id 'com.android.library'
-    id 'org.jetbrains.kotlin.android'
-}
-
-android {
-    namespace 'com.gpeal.droidconanvilsample.lib.daggerscopes'
-    compileSdk 32
-
-    defaultConfig {
-        minSdk 21
-        targetSdk 32
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-        }
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-    kotlinOptions {
-        jvmTarget = '11'
-    }
-}
+apply plugin: 'kotlin'
+apply plugin: 'com.android.lint'
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
-    implementation 'com.google.dagger:dagger:2.42'
+    implementation 'javax.inject:javax.inject:1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
 }
