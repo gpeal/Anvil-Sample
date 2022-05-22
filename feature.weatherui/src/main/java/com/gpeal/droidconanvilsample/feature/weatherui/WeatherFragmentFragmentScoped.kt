@@ -8,7 +8,7 @@ import com.gpeal.droidconanvilsample.lib.daggerscopes.utils.bindings
 import com.gpeal.droidconanvilsample.lib.daggerscopes.utils.fragmentComponent
 import javax.inject.Inject
 
-class WeatherFragmentSimple : Fragment(R.layout.weather_fragment), DaggerComponentOwner {
+class WeatherFragmentFragmentScoped : Fragment(R.layout.weather_fragment), DaggerComponentOwner {
     override val daggerComponent: WeatherComponent by fragmentComponent { _, app ->
         // If you want a ViewModel scoped component, just instantiate this component inside of your ViewModel.
         // You instantiate this component anywhere, really.

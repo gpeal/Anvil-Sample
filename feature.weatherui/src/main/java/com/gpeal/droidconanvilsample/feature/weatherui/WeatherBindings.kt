@@ -5,6 +5,6 @@ import com.squareup.anvil.annotations.ContributesTo
 
 @ContributesTo(WeatherScope::class)
 interface WeatherBindings {
-    fun inject(fragment: WeatherFragmentSimple)
+    fun inject(fragment: WeatherFragmentFragmentScoped)
     fun inject(vm: WeatherViewModel)
 }

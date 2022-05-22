@@ -3,7 +3,6 @@ package com.gpeal.droidconanvilsample.app
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.gpeal.droidconanvilsample.feature.weatherui.R
-import com.gpeal.droidconanvilsample.feature.weatherui.WeatherFragmentSimple
 import com.gpeal.droidconanvilsample.feature.weatherui.WeatherFragmentWithViewModel
 
 class MainActivity : AppCompatActivity() {

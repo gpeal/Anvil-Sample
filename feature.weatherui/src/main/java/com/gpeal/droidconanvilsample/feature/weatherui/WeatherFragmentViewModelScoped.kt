@@ -1,11 +1,9 @@
 package com.gpeal.droidconanvilsample.feature.weatherui
 
 import android.app.Application
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import com.gpeal.droidconanvilsample.lib.daggerscopes.utils.DaggerComponentOwner
 import com.gpeal.droidconanvilsample.lib.daggerscopes.utils.bindings
 import com.gpeal.droidconanvilsample.lib.weatherdata.WeatherRepository
