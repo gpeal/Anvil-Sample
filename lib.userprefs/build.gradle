@@ -1,0 +1,36 @@
+plugins {
+    id 'com.android.library'
+    id 'com.squareup.anvil'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.gpeal.droidconanvilsample.lib.userprefs'
+    compileSdk 32
+
+    defaultConfig {
+        minSdk 21
+        targetSdk 32
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+}
+
+dependencies {
+    implementation project(':lib.daggerscopes')
+    implementation 'androidx.core:core-ktx:1.7.0'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'com.google.dagger:dagger:2.42'
+}

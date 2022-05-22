@@ -1,20 +1,15 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'com.squareup.anvil'
-    id 'kotlin-kapt'
 }
 
 android {
-    namespace 'com.gpeal.droidconanvilsample.app'
+    namespace 'com.gpeal.droidconanvilsample.lib.daggerscopes'
     compileSdk 32
 
     defaultConfig {
-        applicationId "com.gpeal.droidconanvilsample"
         minSdk 21
         targetSdk 32
-        versionCode 1
-        versionName "1.0"
     }
 
     buildTypes {
@@ -32,14 +27,8 @@ android {
 }
 
 dependencies {
-    implementation project(':lib.daggerscopes')
-    implementation project(':lib.weatherdata')
-    implementation project(':lib.userprefs')
-    implementation project(':feature.weatherdata')
-    implementation project(':feature.weatherui')
+    implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     implementation 'com.google.dagger:dagger:2.42'
-    kapt 'com.google.dagger:dagger-compiler:2.42'
-    testImplementation 'junit:junit:4.13.2'
 }

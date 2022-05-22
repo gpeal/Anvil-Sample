@@ -14,3 +14,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "DroidconAnvilSample"
 include ':app'
+include ':lib.daggerscopes'
+include ':lib.userprefs'
+include ':lib.weatherdata'
+include ':feature.weatherdata'
+include ':feature.weatherui'
