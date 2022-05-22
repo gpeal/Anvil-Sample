@@ -1,8 +1,10 @@
 package com.gpeal.droidconanvilsample.lib.daggerscopes.utils
 
+import android.app.Application
 import android.content.Context
 import android.content.ContextWrapper
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.AndroidViewModel
 
 /**
  * Use this to get the dagger "Bindings" for your module. Bindings are used if you need to directly interact with a dagger component such as:
@@ -23,6 +25,9 @@ inline fun <reified T : Any> Context.bindings() = _bindings(T::class.java)
  * @see bindings
  */
 inline fun <reified T : Any> Fragment.bindings() = _bindings(T::class.java)
+
+inline fun <reified T : Any> AndroidViewModel.bindings() = ((this as? DaggerComponentOwner)?.daggerComponent as? T) ?: getApplication<Application>()._bindings(T::class.java)
+
 
 /** Use no-arg extension function instead: [Context._bindings] */
 @Suppress("FunctionName")
