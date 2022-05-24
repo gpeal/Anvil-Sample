@@ -1,8 +1,7 @@
 package com.gpeal.droidconanvilsample.feature.weatherdata
 
-import android.util.Log
-import com.gpeal.droidconanvilsample.lib.daggerscopes.WeatherScope
 import com.gpeal.droidconanvilsample.lib.daggerscopes.SingleIn
+import com.gpeal.droidconanvilsample.lib.daggerscopes.WeatherScope
 import com.gpeal.droidconanvilsample.lib.userprefs.UserPrefs
 import com.gpeal.droidconanvilsample.lib.weatherdata.WeatherDataSource
 import com.gpeal.droidconanvilsample.lib.weatherdata.WeatherRepository

@@ -20,8 +20,10 @@ import dagger.Provides
 import dagger.Reusable
 import org.jetbrains.kotlin.descriptors.ModuleDescriptor
 import org.jetbrains.kotlin.psi.KtFile
+import retrofit2.Retrofit
 import java.io.File
 
+@Suppress("unused")
 @AutoService(CodeGenerator::class)
 class ContributesApiCodeGenerator : CodeGenerator {
 
@@ -37,19 +39,17 @@ class ContributesApiCodeGenerator : CodeGenerator {
     private fun generateModule(apiClass: ClassReference.Psi, codeGenDir: File): GeneratedFile {
         val generatedPackage = apiClass.packageFqName.toString()
         val moduleClassName = "${apiClass.shortName}_Module"
-        val component = AppScope::class.asClassName()
+        val scope = AppScope::class.asClassName()
         // Generate a Dagger module file called MyApi_Module.
         val content = FileSpec.buildFile(generatedPackage, moduleClassName) {
             addType(
                 TypeSpec.classBuilder(moduleClassName)
                     .addAnnotation(Module::class)
-                    .addAnnotation(AnnotationSpec.builder(ContributesTo::class).addMember("%T::class", component).build())
+                    .addAnnotation(AnnotationSpec.builder(ContributesTo::class).addMember("%T::class", scope).build())
                     .addFunction(
                         // @Provides @Reusable provideMyApi(retrofit: Retrofit): MyApi
                         FunSpec.builder("provide${apiClass.shortName}")
-                            .addParameter(
-                                ParameterSpec.builder("retrofit", ClassName("retrofit2", "Retrofit")).build(),
-                            )
+                            .addParameter("retrofit", Retrofit::class.asClassName())
                             .returns(apiClass.asClassName())
                             .addAnnotation(Provides::class)
                             .addAnnotation(Reusable::class)

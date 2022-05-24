@@ -28,5 +28,4 @@ class WeatherDbDataSource @Inject constructor(private val weatherApi: WeatherApi
     override suspend fun getForecast(): List<Int> {
         return weatherApi.getWeather("San Francisco").nextDays.map { it.maxTemp.f }
     }
-
 }
