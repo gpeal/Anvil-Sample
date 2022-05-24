@@ -19,7 +19,8 @@ inline fun <reified T : Any> Fragment.fragmentComponent(crossinline factory: (Co
     ViewModelProvider(this)[DaggerComponentHolderViewModel::class.java].get(factory)
 }
 
-class DaggerComponentHolderViewModel(app: Application) : AndroidViewModel(app) {
+@PublishedApi
+internal class DaggerComponentHolderViewModel(app: Application) : AndroidViewModel(app) {
     val map = ConcurrentHashMap<Class<*>, Any>()
 
     inline fun <reified T> get(factory: (CoroutineScope, Application) -> T): T {

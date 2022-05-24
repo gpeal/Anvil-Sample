@@ -5,8 +5,8 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19479166666666667" />
         <entry key="feature.weatherui/src/main/res/layout/main_fragment.xml" value="0.19479166666666667" />
-        <entry key="feature.weatherui/src/main/res/layout/weather_fragment.xml" value="0.37604166666666666" />
       </map>
     </option>
   </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

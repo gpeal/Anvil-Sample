@@ -7,7 +7,7 @@ import com.squareup.anvil.annotations.ContributesSubcomponent
 import com.squareup.anvil.annotations.ContributesTo
 
 @SingleIn(WeatherScope::class)
-@ContributesSubcomponent(WeatherScope::class, AppScope::class)
+@ContributesSubcomponent(scope = WeatherScope::class, parentScope = AppScope::class)
 interface WeatherComponent {
     @ContributesSubcomponent.Factory
     interface Factory {

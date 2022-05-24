@@ -19,19 +19,19 @@ import androidx.lifecycle.AndroidViewModel
  * 2) Make sure your bindings interface is contributed to AppComponent, UserComponent, etc via `@ContributesTo(AppComponent::class)`.
  * 3) Call context.bindings<YourModuleBindings>().inject(this) (Kotlin)
  */
-inline fun <reified T : Any> Context.bindings() = _bindings(T::class.java)
+inline fun <reified T : Any> Context.bindings() = bindings(T::class.java)
 
 /**
  * @see bindings
  */
-inline fun <reified T : Any> Fragment.bindings() = _bindings(T::class.java)
+inline fun <reified T : Any> Fragment.bindings() = bindings(T::class.java)
 
-inline fun <reified T : Any> AndroidViewModel.bindings() = ((this as? DaggerComponentOwner)?.daggerComponent as? T) ?: getApplication<Application>()._bindings(T::class.java)
+inline fun <reified T : Any> AndroidViewModel.bindings() = ((this as? DaggerComponentOwner)?.daggerComponent as? T) ?: getApplication<Application>().bindings(T::class.java)
 
 
-/** Use no-arg extension function instead: [Context._bindings] */
-@Suppress("FunctionName")
-fun <T : Any> Context._bindings(klass: Class<T>): T {
+/** Use no-arg extension function instead: [Context.bindings] */
+@PublishedApi
+internal fun <T : Any> Context.bindings(klass: Class<T>): T {
     // search dagger components in the context hierarchy
     return generateSequence(this) { (it as? ContextWrapper)?.baseContext }
         .plus(applicationContext)
@@ -43,8 +43,9 @@ fun <T : Any> Context._bindings(klass: Class<T>): T {
         ?: error("Unable to find bindings for ${klass.name}")
 }
 
-/** Use no-arg extension function instead: [Fragment._bindings] */
-fun <T : Any> Fragment._bindings(klass: Class<T>): T {
+/** Use no-arg extension function instead: [Fragment.bindings] */
+@PublishedApi
+internal fun <T : Any> Fragment.bindings(klass: Class<T>): T {
     // Search dagger components in fragment hierarchy, then fallback to activity and application
     return generateSequence(this, Fragment::getParentFragment)
         .filterIsInstance<DaggerComponentOwner>()
@@ -52,5 +53,5 @@ fun <T : Any> Fragment._bindings(klass: Class<T>): T {
         .flatMap { if (it is Collection<*>) it else listOf(it) }
         .filterIsInstance(klass)
         .firstOrNull()
-        ?: requireActivity()._bindings(klass)
+        ?: requireActivity().bindings(klass)
 }
