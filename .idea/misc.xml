@@ -4,7 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19479166666666667" />
+        <entry key="feature.weatherui/src/main/res/layout/activity_main.xml" value="0.334375" />
         <entry key="feature.weatherui/src/main/res/layout/main_fragment.xml" value="0.19479166666666667" />
+        <entry key="feature.weatherui/src/main/res/layout/weather_fragment.xml" value="0.334375" />
       </map>
     </option>
   </component>

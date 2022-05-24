@@ -6,10 +6,13 @@ plugins {
     id 'com.squareup.anvil' version '2.4.0' apply false
 }
 
-subprojects { project ->
-    project.pluginManager.withPlugin("com.squareup.anvil") {
-        anvil {
-            generateDaggerFactories = true
+subprojects { Project project ->
+    // The app module applies Kapt and Anvil should not generated Dagger factories to avoid duplicate classes.
+    if (project.name != 'app') {
+        project.pluginManager.withPlugin("com.squareup.anvil") {
+            anvil {
+                generateDaggerFactories = true
+            }
         }
     }
 }

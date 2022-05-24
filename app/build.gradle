@@ -15,6 +15,8 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "com.gpeal.droidconanvilsample.app.TestRunner"
     }
 
     buildTypes {
@@ -42,5 +44,13 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
     implementation 'com.google.android.material:material:1.6.0'
     implementation 'com.google.dagger:dagger:2.42'
+
     kapt 'com.google.dagger:dagger-compiler:2.42'
+    kaptAndroidTest 'com.google.dagger:dagger-compiler:2.42'
+
+    androidTestImplementation 'androidx.test:core-ktx:1.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test:rules:1.4.0'
+    androidTestImplementation 'androidx.test:runner:1.4.0'
 }

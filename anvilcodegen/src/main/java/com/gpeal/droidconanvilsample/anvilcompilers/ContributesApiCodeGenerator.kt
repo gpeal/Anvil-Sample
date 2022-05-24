@@ -14,7 +14,11 @@ import com.squareup.anvil.compiler.internal.fqName
 import com.squareup.anvil.compiler.internal.reference.ClassReference
 import com.squareup.anvil.compiler.internal.reference.asClassName
 import com.squareup.anvil.compiler.internal.reference.classAndInnerClassReferences
-import com.squareup.kotlinpoet.*
+import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.asClassName
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
@@ -36,14 +40,14 @@ class ContributesApiCodeGenerator : CodeGenerator {
             .toList()
     }
 
-    private fun generateModule(apiClass: ClassReference.Psi, codeGenDir: File): GeneratedFile {
+    private fun generateModule(apiClass: ClassReference, codeGenDir: File): GeneratedFile {
         val generatedPackage = apiClass.packageFqName.toString()
         val moduleClassName = "${apiClass.shortName}_Module"
         val scope = AppScope::class.asClassName()
         // Generate a Dagger module file called MyApi_Module.
         val content = FileSpec.buildFile(generatedPackage, moduleClassName) {
             addType(
-                TypeSpec.classBuilder(moduleClassName)
+                TypeSpec.objectBuilder(moduleClassName)
                     .addAnnotation(Module::class)
                     .addAnnotation(AnnotationSpec.builder(ContributesTo::class).addMember("%T::class", scope).build())
                     .addFunction(
