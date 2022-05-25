@@ -7,12 +7,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewModelScope
 import com.gpeal.droidconanvilsample.lib.weatherdata.WeatherRepository
 import com.gpeal.droidconanvilsample.utils.DaggerComponentOwner
 import com.gpeal.droidconanvilsample.utils.bindings
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,8 +24,8 @@ class WeatherViewModel(application: Application) : AndroidViewModel(application)
     @Inject
     lateinit var weatherRepository: WeatherRepository
 
-    private val _result = MutableLiveData<List<Int>>()
-    val result: LiveData<List<Int>> = _result
+    private val _result = MutableStateFlow<List<Int>>(emptyList())
+    val result: Flow<List<Int>> = _result
 
     init {
         bindings<WeatherBindings>().inject(this)
@@ -39,8 +40,10 @@ class WeatherFragmentWithViewModel : Fragment(R.layout.weather_fragment) {
     private val viewModel: WeatherViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.result.observe(viewLifecycleOwner) {
-            view.findViewById<TextView>(R.id.message).text = "Forecast=$it"
+        lifecycleScope.launchWhenStarted {
+            viewModel.result.collect {
+                view.findViewById<TextView>(R.id.message).text = "Forecast=$it"
+            }
         }
     }
 }
