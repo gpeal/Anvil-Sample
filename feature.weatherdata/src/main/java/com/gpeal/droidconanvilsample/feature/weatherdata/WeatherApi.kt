@@ -1,6 +1,7 @@
 package com.gpeal.droidconanvilsample.feature.weatherdata
 
 import com.gpeal.droidconanvilsample.lib.daggerscopes.ContributesApi
+import com.gpeal.droidconanvilsample.lib.daggerscopes.WeatherScope
 import com.squareup.moshi.Json
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -10,7 +11,7 @@ import retrofit2.http.Path
  * Normally, you would need to create a Dagger module and provide this by hand.
  * Refer to the :anvilcodegen module for how this works.
  */
-@ContributesApi
+@ContributesApi(WeatherScope::class)
 interface WeatherApi {
     @GET("data/weather/{query}")
     suspend fun getWeather(@Path("query") query: String): WeatherResponse

@@ -1,7 +1,9 @@
 package com.gpeal.droidconanvilsample.lib.daggerscopes
 
+import kotlin.reflect.KClass
+
 /**
- * Annotate a retrofit interface with this to automatically contribute it to the [AppScope] graph.
+ * Annotate a retrofit interface with this to automatically contribute it to the specified scope.
  * Equivalent to the following declaration in an application module:
  *
  *     @Provides
@@ -11,4 +13,4 @@ package com.gpeal.droidconanvilsample.lib.daggerscopes
  * The generated code created via the :anvilcodegen module.
  */
 @Target(AnnotationTarget.CLASS)
-annotation class ContributesApi
+annotation class ContributesApi(val scope: KClass<*>)
